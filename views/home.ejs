@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        <%= locals.title %>
+    </title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/css/home.css">
+    <!-- our css files should be below all styles so that it can override it -->
+</head>
+
+<body>
+    <h1 id="page-heading">
+        <i class="fas fa-address-book"></i>
+        My Contacts List
+    </h1>
+    <div style="display: flex;flex-direction:column; align-items:center;">
+        <ul class="contact_container">
+             <% for(let i of contact_list) { %>
+                <li id="contact_item">
+                    <p><%= i.name %></p>
+                    <p><%= i.phone %></p>
+                    <div class="delete-button">
+                        <a href="/delete-contact/?id=<%= i._id %>">
+                            <i class="fas fa-window-close"></i>
+                        </a>
+                    </div>
+                </li>
+               
+             <% } %>
+
+        </ul>
+        <form action="/create-contact" method="POST" class="form-control">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="number" name="phone" placeholder="Enter Phone" required>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+
+    <script type="text/javascript" src="/js/home.js"></script>
+</body>
+
+</html>
